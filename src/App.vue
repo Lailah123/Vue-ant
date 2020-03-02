@@ -9,7 +9,8 @@
         
         </a-layout-header>
         <a-layout-content>
-          <Content></Content>
+          <!-- <Content></Content> -->
+          <router-view></router-view>
         </a-layout-content>
         <a-layout-footer>
           <Footer></Footer>

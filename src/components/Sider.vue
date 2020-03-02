@@ -1,5 +1,6 @@
 <template>
-  <div class="solid">
+    <a-affix>
+        <div class="solid">
         <a-menu
         @click="handleClick"
         style="width: 200px"
@@ -10,11 +11,9 @@
         <a-sub-menu key="sub1" @titleClick="titleClick">
             <span slot="title"><a-icon type="mail" /><span>Navigation One</span></span>
             <a-menu-item-group key="g1">
-            <template slot="title"
-                ><a-icon type="qq" /><span>Item 1</span></template
-            >
-            <a-menu-item key="1">Option 1</a-menu-item>
-            <a-menu-item key="2">Option 2</a-menu-item>
+            <template slot="title"><a-icon type="qq" /><span>Item 1</span></template>
+            <a-menu-item key="1"><router-link to="/option1">Option 1</router-link></a-menu-item>
+            <a-menu-item key="2"><router-link to="/option2">Option 2</router-link></a-menu-item>
             </a-menu-item-group>
             <a-menu-item-group key="g2" title="Item 2">
             <a-menu-item key="3">Option 3</a-menu-item>
@@ -39,6 +38,7 @@
         </a-sub-menu>
         </a-menu>
     </div>
+    </a-affix>
 </template>
 
 <script>
