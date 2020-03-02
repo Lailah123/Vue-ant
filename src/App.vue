@@ -180,6 +180,9 @@
 </script>
 
 <style>
+  html{
+    min-width: 1200px;
+  }
   #components-layout-demo-basic .ant-layout-header,
   #components-layout-demo-basic .ant-layout-footer {
     background: #fff;
@@ -209,6 +212,9 @@
     display: flex;
     padding: 32px;
     margin-top: 16px;
+  }
+  .skeletion .ant-skeleton{
+    display: flex;
   }
   .ant-skeleton{
     padding: 16px;
