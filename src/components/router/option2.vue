@@ -1,18 +1,25 @@
 <template>
   <div>
-    <h3>option1</h3>
-    <h3>option1</h3>
-    <h3>option1</h3>
-    <h3>option1</h3>
-    <h3>option1</h3>
-    <h3>option1</h3>
-    <h3>option1</h3>
-    <h3>option1</h3>
+    <h3>{{str}}</h3>
+    <h3>{{str}}</h3>
+    <h3>{{str}}</h3>
+    <h3>{{str}}</h3>
+    <h3>{{str}}</h3>
+    <h3>{{str}}</h3>
+    <h3>{{str}}</h3>
+    <h3>{{str}}</h3>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props:['str'],
+    data() {
+    return {
+      // str:"option2",
+    };
+  }
+};
 </script>
 
 <style>
