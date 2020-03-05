@@ -16,9 +16,16 @@ Vue.component('Content', Content);
 Vue.config.productionTip = false
 
 new Vue({
+    data:{
+        a:123,
+    },
     router,
     // vue 1.0写法
     //   components: { App },
     // vue2.0写法
     render: h => h(App),
+    created: function () {
+        // `this` 指向 vm 实例
+        console.log(this)
+      }
 }).$mount('#app')

@@ -8,7 +8,7 @@
         <a-layout-header></a-layout-header>
         <a-layout-content>
           <!-- <Content></Content> -->
-          <router-view :str=str></router-view>
+          <router-view v-bind:str="str"></router-view>
         </a-layout-content>
         <a-layout-footer>
           <Footer></Footer>
@@ -25,7 +25,7 @@ export default {
       visible: false,
       placement: "left",
       //测试路由传参到组件
-      str:"option2"
+      str:"option2",
     };
   }
 };

@@ -9,6 +9,7 @@ import option4 from '../components/router/option4.vue'
 Vue.use(Router)
 
 export default new Router({
+    mode:'history',
     routes: [
         {
             path: '/',

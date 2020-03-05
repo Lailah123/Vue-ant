@@ -86,4 +86,26 @@ export default {
 </script>
 
 <style>
+.ant-menu-item{
+  transition: all .3s;
+}
+.ant-menu-item:hover{
+  /* transform: translateY(-5px);
+  box-shadow: 0 0px 20px rgba(0,0,0,0.2); */
+  /* animation: moveInLeft 1s ease-out; */
+}
+.ant-menu-item-selected{
+  animation: moveInLeft .3s ease-out;
+}
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 </style>
