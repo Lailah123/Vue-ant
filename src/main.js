@@ -6,6 +6,10 @@ import 'ant-design-vue/dist/antd.css';
 import Sider from './components/Sider.vue';
 import Content from './components/Content.vue'
 import Footer from './components/Footer.vue'
+import axios from 'axios'
+
+Vue.prototype.$axios = axios
+// Vue.prototype.HOST = '/api'
 Vue.config.productionTip = false;
 
 Vue.use(Antd);
@@ -26,6 +30,6 @@ new Vue({
     render: h => h(App),
     created: function () {
         // `this` 指向 vm 实例
-        console.log(this)
+        // console.log(this)
       }
 }).$mount('#app')

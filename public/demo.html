@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+    <style>
+      #demo{
+        margin: 0 50px;
+      }
+      .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
+      }
+      .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0;
+      }
+
+      .list-complete-item {
+        transition: all 1s;
+        display: block;
+        margin-right: 10px;
+      }
+      .list-complete-enter, .list-complete-leave-to
+      /* .list-complete-leave-active for below version 2.1.8 */ {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      .list-complete-leave-active {
+        position: absolute;
+}
+    </style>
+</head>
+<body>
+    <!-- <div id="demo">
+        <button v-on:click="show = !show">
+          Toggle
+        </button>
+        <transition
+          name="custom-classes-transition"
+          enter-active-class="animated tada"
+          leave-active-class="animated bounceOutRight"
+        >
+          <p v-if="show">hello</p>
+        </transition>
+    </div> -->
+
+    <div id="list-complete-demo" class="demo">
+      <button v-on:click="shuffle">Shuffle</button>
+      <button v-on:click="add">Add</button>
+      <button v-on:click="remove">Remove</button>
+      <transition-group name="list-complete" tag="p">
+        <span
+          v-for="item in items"
+          v-bind:key="item"
+          class="list-complete-item"
+        >
+          {{ item }}
+        </span>
+      </transition-group>
+    </div>
+    <!-- vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- lodash -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+    <script>
+        // new Vue({
+        // el: '#demo',
+        // data: {
+        //     show: true
+        // }
+        // })
+
+        new Vue({
+        el: '#list-complete-demo',
+        data: {
+          items: [1,2,3,4,5,6,7,8,9],
+          nextNum: 10
+        },
+        methods: {
+          randomIndex: function () {
+            return Math.floor(Math.random() * this.items.length)
+          },
+          add: function () {
+            // splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。
+            // splice(index,删除数量，要添加的元素（多个）)
+            this.items.splice(this.randomIndex(), 0, this.nextNum++)
+          },
+          remove: function () {
+            this.items.splice(this.randomIndex(), 1)
+          },
+          shuffle: function () {
+            this.items = _.shuffle(this.items)
+          }
+        }
+      })
+    </script>
+</body>
+</html>
