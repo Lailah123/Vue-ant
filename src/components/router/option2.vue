@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="table">
     <!-- <div class="loading" v-if="data.length == 0">
       <a-spin size="large" :delay="delayTime" tip="loading..."/>
     </div>-->
@@ -8,6 +8,7 @@
         :columns="columns"
         :dataSource="data"
         :loading="loading"
+        :pagination=false
         :rowKey="record => record.id"
       >
         <a slot="name" slot-scope="text" href="javascript:;">{{text}}</a>
@@ -27,37 +28,17 @@
         </span>
       </a-table>
     </div>
+    <div class="page">
+      <a-pagination
+        showSizeChanger
+        :defaultCurrent="1"
+        :total="total"
+      />
+    </div>
   </div>
 </template>
 <script>
 const columns = [
-  // {
-  //   dataIndex: "name",
-  //   key: "name",
-  //   slots: { title: "customTitle" },
-  //   scopedSlots: { customRender: "name" }
-  // },
-  // {
-  //   title: "Age",
-  //   dataIndex: "age",
-  //   key: "age"
-  // },
-  // {
-  //   title: "Address",
-  //   dataIndex: "address",
-  //   key: "address"
-  // },
-  // {
-  //   title: "Tags",
-  //   key: "tags",
-  //   dataIndex: "tags",
-  //   scopedSlots: { customRender: "tags" }
-  // },
-  // {
-  //   title: "Action",
-  //   key: "action",
-  //   scopedSlots: { customRender: "action" }
-  // }
   {
     title: "id",
     dataIndex: "id",
@@ -80,40 +61,21 @@ const columns = [
   }
 ];
 
-const data = [
-  // {
-  //   key: "1",
-  //   name: "John Brown",
-  //   age: 32,
-  //   address: "New York No. 1 Lake Park",
-  //   tags: ["nice", "developer"]
-  // },
-  // {
-  //   key: "2",
-  //   name: "Jim Green",
-  //   age: 42,
-  //   address: "London No. 1 Lake Park",
-  //   tags: ["loser"]
-  // },
-  // {
-  //   key: "3",
-  //   name: "Joe Black",
-  //   age: 32,
-  //   address: "Sidney No. 1 Lake Park",
-  //   tags: ["cool", "teacher"]
-  // }
-];
+const data = [];
 
+let total = 0;
 export default {
   data() {
     return {
       delayTime: 300,
       loading: true,
       data,
-      columns
+      columns,
+      total
     };
   },
   mounted: function() {
+    this.getTotal();
     this.getPage();
   },
   methods: {
@@ -133,6 +95,8 @@ export default {
     },
     getPage() {
       let _this = this;
+      console.log(this.pageSize);
+      
       this.loading = true;
       this.$axios
         .post("/api/v1/redis/queryByPage", {
@@ -141,24 +105,34 @@ export default {
           pageSize: 10,
           currectPage: 1
         })
-        .then(res => (
-          _this.data = res.data,
-          _this.loading = false
-          
-          ));
+        .then(res => ((_this.data = res.data), (_this.loading = false)));
+    },
+    getTotal(){
+      console.log("getTotal");
+      
+      let _this = this;
+      this.$axios.post("/api/v1/redis/queryCount",{})
+      .then(res => (_this.total = res.data,console.log(res)));
     }
   }
 };
 </script>
 
 <style>
-.main-table {
+.table{
   margin: 50px;
+}
+.main-table {
+  /* margin: 50px; */
 }
 .loading .ant-spin-spinning {
   display: block;
 }
 .loading {
   margin: 200px auto;
+}
+.page{
+  float: right;
+  padding: 24px 0;
 }
 </style>
